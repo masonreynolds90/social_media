@@ -1,0 +1,93 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+landing page
+{% endblock%}
+
+{% block content %}
+<div class="container">
+
+    <div class="row text-center">
+        <p class="h3">APIs of Account</p>
+    </div>
+
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'accounts:signup' %}">SignUp</a></li>
+        {% if request.user.is_authenticated %}
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="{% url 'accounts:profile-list' %}">profile-list</a></li>
+        <li class="list-group-item list-group-item-light"><a class="nav-link" href="{% url 'accounts:profile-detail' request.user.id %}">profile-detail</a></li>
+        <li class="list-group-item list-group-item-info"><a class="nav-link" href="{% url 'accounts:profile-update'%}">profile-update</a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="{% url 'accounts:follower-following-list' %}">follower-following-list</a></li>
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'accounts:follower-following-detail' request.user.id %}">follower-following-detail</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'accounts:follow-action' %}">follow-action</a></li>
+        <li class="list-group-item list-group-item-danger"><a class="nav-link" href="{% url 'accounts:unfollow-action' %}">unfollow-action</a></li>
+        <li class="list-group-item list-group-item-danger"><a class="nav-link" href="{% url 'accounts:send_follow_request' '@sara' %}">send_follow_request to @sara</a></li>
+        <li class="list-group-item list-group-item-warning"><a class="nav-link" href="/api/schema/swagger-ui/">swagger-ui</a></li>
+        <li class="list-group-item list-group-item-dark"><a class="nav-link" href="{% url 'accounts:follow-request-list' %}">follow-request-list</a></li>
+        <li class="list-group-item list-group-item-warning"><a class="nav-link" href="{% url 'accounts:follow-request-detail' 1 %}">follow-request-detail</a></li>
+        {% endif %}
+        
+    </ul>
+    <hr>
+    <div class="row text-center">
+        <p class="h3">APIs of Content</p>
+    </div>
+    <ul class="list-group">
+        {% if request.user.is_authenticated %}
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'content:posts-list' %}">posts_list</a></li>
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'content:posts-detail' 1 %}">posts_detail</a></li>
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'content:postmedia-list' %}">postmedia_list</a></li>
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'content:postmedia-detail' 1 %}">postmedia_detail</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'content:add-like' %}">add-like</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'content:remove-like' 1 %}">remove-like</a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="{% url 'content:add-tag' %}">add-tag</a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="{% url 'content:remove-tag' 1 %}">remove-tag</a></li>
+        <li class="list-group-item list-group-item-danger"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-warning"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-info"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-light"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-dark"><a class="nav-link" href="#"></a></li>
+        {% endif %}
+    </ul>
+    <hr>
+    <div class="row text-center">
+        <p class="h3">APIs of Direct Messages</p>
+    </div>
+    <ul class="list-group">
+        {% if request.user.is_authenticated %}
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'direct:send_message_api' '@username' %}">send_message_api</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'direct:user_messages_api' '@mohsen' %}">user_messages_api</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'direct:all_user_messages_api' %}">all_user_messages_api</a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="# %}"></a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-danger"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-warning"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-info"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-light"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-dark"><a class="nav-link" href="#"></a></li>
+        {% endif %}
+    </ul>
+    <hr>
+    <div class="row text-center">
+        <p class="h3">APIs of User Acitivity</p>
+    </div>
+    <ul class="list-group">
+        {% if request.user.is_authenticated %}
+        <li class="list-group-item list-group-item-primary"><a class="nav-link" href="{% url 'user_activity:comment-list-create'%}">comment-list-create</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="{% url 'user_activity:comment-detail' 1 %}">comment-detail</a></li>
+        <li class="list-group-item list-group-item-secondary"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="# %}"></a></li>
+        <li class="list-group-item list-group-item-success"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-danger"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-warning"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-info"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-light"><a class="nav-link" href="#"></a></li>
+        <li class="list-group-item list-group-item-dark"><a class="nav-link" href="#"></a></li>
+        {% endif %}
+    </ul>
+</div>
+
+{% endblock %}
